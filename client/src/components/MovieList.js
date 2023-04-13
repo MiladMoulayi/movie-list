@@ -7,6 +7,7 @@ const MovieList = ({movies}) => {
 
   return (
     <div className="movelist" key="movielist">
+      <h2>Movie List</h2>
     <div className="search"><Search placeholder="Enter movie..." data={movies} setFilteredData={setFilteredMovies}/></div>
     {console.log(filteredMovies)}
       <div className="movieSearchResult">
