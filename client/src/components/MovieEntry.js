@@ -3,7 +3,7 @@ import React from 'react';
 const MovieEntry = ({movie}) => {
 
   return (
-    <div>{movie.title}</div>
+    <div id={movie.title}>{movie.title}</div>
   )
 };
 

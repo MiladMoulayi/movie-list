@@ -1,3 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Nunito", sans-serif;
+  background-image: linear-gradient(90deg, #410076, #8820dd);
+}
+
 body {
-  font-family: sans-serif, arial;
+  --text: "Nunito", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.example {
+  font-family:var(--text);
+}
+
+.searchInput {
+  margin-top: 105px;
+  display: flex;
+}
+
+.search input {
+  background-color: white;
+  border: 0;
+  border-radius: 2px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  font-size: 18px;
+  padding: 15px;
+  height: 30px;
+  width: 300px;
+}
+
+.searchIcon {
+  height: 60px;
+  width: 50px;
+  background-color: white;
+  display: grid;
+  place-items: center;
+}
+
+input:focus {
+  outline: none;
+}
+.searchIcon svg {
+  font-size: 35px;
+}
+
+.searchResult {
+  margin-top: 5px;
+  width: 300px;
+  height: 100px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.searchResult::-webkit-scrollbar {
+  display: none;
+}
+
+.searchResult .searchItem {
+  width: 100%;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.searchItem p {
+  margin-left: 10px;
+}
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: lightgrey;
+}
+
+#clearBtn {
+  cursor: pointer;
 }
