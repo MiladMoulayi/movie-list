@@ -37,14 +37,14 @@ h2 {
   color:white;
 }
 
-.searchInput {
+.searchInput, .addMovieInput {
   margin-top: 60px;
   margin-bottom:80px;
   display: flex;
   margin-left: 12pt;
 }
 
-.search input {
+.search input, .addMovieInput input {
   background-color: white;
   border: 0;
   border-radius: 2px;
@@ -56,7 +56,7 @@ h2 {
   width: 300px;
 }
 
-.searchIcon {
+.searchIcon, .addBoxIcon {
   height: 40px;
   width: 50px;
   background-color: white;
@@ -89,6 +89,6 @@ a:hover {
   background-color: lightgrey;
 }
 
-#clearBtn {
+#clearBtn, #addBtn {
   cursor: pointer;
 }
