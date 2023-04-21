@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
-const AddMovie = ({placeholder, data, addNewMovie}) => {
+const AddMovie = ({placeholder, data, setFilteredData}) => {
   const [newMovieEntry, setNewMovieEntry] = useState('');
 
   const movieMagic = (event) => {
@@ -9,10 +9,13 @@ const AddMovie = ({placeholder, data, addNewMovie}) => {
     setNewMovieEntry(movieStr);
   }
 
-  const addToList = () => {
+  const handleFilter = (event) => {
     data.push({'title': newMovieEntry});
-    addNewMovie(data);
-  }
+
+    console.log(data);
+    setFilteredData(data.slice());
+
+  };
 
 
   return (
@@ -22,7 +25,7 @@ const AddMovie = ({placeholder, data, addNewMovie}) => {
             value={newMovieEntry}
             onChange={movieMagic}
           />
-      <AddBoxIcon id="addBtn" onClick={addToList}/>
+      <div className="addIcon"><AddBoxIcon id="addBtn" onClick={handleFilter}/></div>
     </div>
   )
 

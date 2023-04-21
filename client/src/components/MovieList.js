@@ -10,7 +10,7 @@ const MovieList = ({movies}) => {
   return (
     <div className="movelist" key="movielist">
       <h2>Movie List</h2>
-    <div className="addMovie"><AddMovie placeholder="Add a new movie..." data={movies} addNewMovie={setFilteredMovies}/></div>
+    <div className="addMovie"><AddMovie placeholder="Add a new movie..." data={movies} setFilteredData={setFilteredMovies}/></div>
     <div className="search"><Search placeholder="Search movies..." data={movies} setFilteredData={setFilteredMovies}/></div>
     <div className="movieSearchResult">
       {filteredMovies.map((movie) => {
