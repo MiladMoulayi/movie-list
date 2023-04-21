@@ -6,7 +6,8 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "start": "nodemon server/app.js",
+    "start:server": "node server/app.js",
+    "start:client": "nodemon client/index.js",
     "react-dev": "webpack --config ./webpack.config.js  -w"
   },
   "devDependencies": {
