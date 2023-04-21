@@ -4,17 +4,14 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 const AddMovie = ({placeholder, data, setFilteredData}) => {
   const [newMovieEntry, setNewMovieEntry] = useState('');
 
-  const movieMagic = (event) => {
+  const handleInput = (event) => {
     const movieStr = event.target.value;
     setNewMovieEntry(movieStr);
   }
 
   const handleFilter = (event) => {
-    data.push({'title': newMovieEntry});
-
-    console.log(data);
+    data.push({'title': newMovieEntry, 'watched': false});
     setFilteredData(data.slice());
-
   };
 
 
@@ -23,7 +20,7 @@ const AddMovie = ({placeholder, data, setFilteredData}) => {
       <input type="text"
             placeholder={placeholder}
             value={newMovieEntry}
-            onChange={movieMagic}
+            onChange={handleInput}
           />
       <div className="addIcon"><AddBoxIcon id="addBtn" onClick={handleFilter}/></div>
     </div>

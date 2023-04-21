@@ -27,7 +27,7 @@ h2 {
   color:white;
 }
 
-.movieentry {
+.movieEntry {
   padding: 6pt;
   margin: 12pt;
   text-indent: 12pt;
@@ -91,4 +91,8 @@ a:hover {
 
 #clearBtn, #addBtn {
   cursor: pointer;
+}
+
+.listButton {
+  margin: 12pt;
 }

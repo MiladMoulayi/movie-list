@@ -12,9 +12,7 @@ const Search = ({placeholder, data, setFilteredData}) => {
     const newFilter = data.filter((value) => {
       return value.title.toLowerCase().includes(searchWord.toLowerCase());
     });
-
     setFilteredData(newFilter);
-
   };
 
   const clearInput = () => {
@@ -22,9 +20,7 @@ const Search = ({placeholder, data, setFilteredData}) => {
     setWordEntered("");
   }
 
-
   return (
-    <div className="search">
       <div className="searchInput">
         <input type="text"
           placeholder={placeholder}
@@ -39,7 +35,6 @@ const Search = ({placeholder, data, setFilteredData}) => {
           )}
         </div>
       </div>
-    </div>
   );
 }
 
