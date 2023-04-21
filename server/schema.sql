@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS movies;
+
 CREATE DATABASE movies;
 
 USE movies;
@@ -7,7 +9,7 @@ CREATE TABLE movies (
 
   id int NOT NULL AUTO_INCREMENT,
   title varchar(40) NOT NULL,
-  watched BOOLEAN NOT NULL DEFAULT FALSE,,
+  watched BOOLEAN NOT NULL DEFAULT FALSE,
   PRIMARY KEY (ID)
 );
 
