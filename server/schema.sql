@@ -8,7 +8,7 @@ CREATE TABLE movies (
   /* Describe your table here.*/
 
   id int NOT NULL AUTO_INCREMENT,
-  title varchar(40) NOT NULL,
+  title varchar(100) NOT NULL,
   watched BOOLEAN NOT NULL DEFAULT FALSE,
   PRIMARY KEY (ID)
 );

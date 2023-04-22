@@ -2,21 +2,20 @@ import React, { useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
-const Search = ({placeholder, data, setFilteredData}) => {
-  // const [filteredData, setFilteredData] = useState([]);
+const Search = ({placeholder, allMovies, setFilteredMovies}) => {
   const [wordEntered, setWordEntered] = useState('');
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
-    const newFilter = data.filter((value) => {
+    const newFilter = allMovies.filter((value) => {
       return value.title.toLowerCase().includes(searchWord.toLowerCase());
     });
-    setFilteredData(newFilter);
+    setFilteredMovies(newFilter);
   };
 
   const clearInput = () => {
-    setFilteredData(data);
+    setFilteredMovies(allMovies);
     setWordEntered("");
   }
 

@@ -8,6 +8,7 @@ import axios from 'axios';
 const MovieList = () => {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [allMovies, setAllMovies] = useState([]);
+  const [changeToWatchState, setChangeToWatchState] = useState(false);
 
   const renderAll = () => {
     axios.get('http://localhost:3000/movies').then((response) => {
@@ -16,9 +17,13 @@ const MovieList = () => {
     });
   }
 
-    useEffect(() => {
-      renderAll();
-    }, [MovieEntry])
+  useEffect(() => {
+    renderAll();
+  }, [])
+
+  useEffect(() => {
+    renderAll();
+  }, [changeToWatchState])
 
   const handleWatchButtonClick = (e) => {
     let movies = allMovies.slice()
@@ -37,8 +42,8 @@ const MovieList = () => {
   return (
     <div className="movelist" key="movielist">
       <h2>Movie List</h2>
-    <div className="addMovie"><AddMovie placeholder="Add a new movie..." data={filteredMovies} setFilteredData={setFilteredMovies}/></div>
-    <div className="search"><Search placeholder="Search movies..." data={filteredMovies} setFilteredData={setFilteredMovies}/></div>
+    <div className="addMovie"><AddMovie placeholder="Add a new movie..." allMovies={allMovies} setAllMovies={setAllMovies} renderAll={renderAll}/></div>
+    <div className="search"><Search placeholder="Search movies..." allMovies={allMovies} setFilteredMovies={setFilteredMovies}/></div>
     <div className="listButtons">
       <span className="listButton"><Button variant="contained" color="secondary" value="all" onClick={handleWatchButtonClick}>All</Button></span>
       <span className="listButton"><Button variant="contained" color="secondary" value="watched" onClick={handleWatchButtonClick}>Watched</Button></span>
@@ -46,7 +51,7 @@ const MovieList = () => {
     </div>
     <div className="movieDisplay">
       {filteredMovies.map((movie) => {
-        return <div className="movieentry" key={movie.title}><MovieEntry movie={movie} renderAll={renderAll}/></div>
+        return <div className="movieentry" key={movie.title}><MovieEntry movie={movie} changeToWatchState={changeToWatchState} setChangeToWatchState={setChangeToWatchState}/></div>
         })}
     </div>
    </div>

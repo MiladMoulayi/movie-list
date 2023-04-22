@@ -2,20 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
 import axios from 'axios';
 
-const MovieEntry = ({movie, renderAll}) => {
+const MovieEntry = ({movie, changeToWatchState, setChangeToWatchState}) => {
   const [watchedState, setWatchedState] = useState(movie.watched);
 
-  useEffect(() => {
-    renderAll();
-  }, [watchedState]);
-
-  const handleToggle = (event) => {
-
-    axios.put('http://localhost:3000/movies', {
+  const handleToggle = async (event) => {
+    const update = await axios.put('http://localhost:3000/movies', {
       'title': movie.title,
       'watched': !movie.watched
     })
     setWatchedState(!watchedState);
+    setChangeToWatchState(changeToWatchState+'.');
   };
 
   return (

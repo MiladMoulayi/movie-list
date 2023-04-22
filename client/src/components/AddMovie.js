@@ -1,30 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import axios from "axios";
 
-const AddMovie = ({placeholder, data, setFilteredData}) => {
+const AddMovie = ({placeholder, allMovies, setAllMovies, renderAll}) => {
   const [newMovieEntry, setNewMovieEntry] = useState('');
+  const [addButtonClick, setAddButtonClick] = useState('click me');
 
   const handleInput = (event) => {
     const movieStr = event.target.value;
     setNewMovieEntry(movieStr);
   }
 
+  useEffect(() => {
+    renderAll();
+  }, [addButtonClick])
 
-  const handleSubmit = () => {
-    axios.post('http://localhost:3000/movies', {
+  const handleSubmit = async () => {
+    const response = await axios.post('http://localhost:3000/movies', {
       'title': newMovieEntry,
       'watched': false
     });
-    setNewMovieEntry("");
+    setNewMovieEntry('');
+    setAddButtonClick('clicked!');
   }
-
-
-  // const handleFilter = (event) => {
-  //   data.push({'title': newMovieEntry, 'watched': false});
-  //   setFilteredData(data.slice());
-  // };
-
 
   return (
     <div className="addMovieInput">
