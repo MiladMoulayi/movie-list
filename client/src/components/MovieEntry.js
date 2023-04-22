@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
+import axios from 'axios';
 
-const MovieEntry = ({movie, filteredMovies, setFilteredMovies}) => {
+const MovieEntry = ({movie, renderAll}) => {
+  const [watchedState, setWatchedState] = useState(movie.watched);
+
+  useEffect(() => {
+    renderAll();
+  }, [watchedState]);
 
   const handleToggle = (event) => {
-    let temp = filteredMovies.slice();
-    for (let i = 0; i < temp.length; i++) {
-      if (movie.title === temp[i].title) {
-        temp[i].watched = !temp[i].watched;
-      }
-    }
-    setFilteredMovies(temp);
+
+    axios.put('http://localhost:3000/movies', {
+      'title': movie.title,
+      'watched': !movie.watched
+    })
+    setWatchedState(!watchedState);
   };
 
   return (
     <div className="movieEntry">
       <div id={movie.title} className="movie">{movie.title}</div>
-      <Button variant="contained" color="secondary" onClick={handleToggle}>{movie.watched ? 'Watched' : 'Not Watched'}</Button>
+      <Button variant="contained" color="secondary" onClick={handleToggle}>{watchedState ? 'Watched' : 'Not Watched'}</Button>
     </div>
   )
 };

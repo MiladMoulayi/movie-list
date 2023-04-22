@@ -1,32 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MovieEntry from './MovieEntry.js';
 import Search from './Search.js';
 import AddMovie from './AddMovie.js';
 import { Button } from '@mui/material';
+import axios from 'axios';
 
-const MovieList = ({movies}) => {
-  const [filteredMovies, setFilteredMovies] = useState(movies);
-  const [watchedState, setWatchedState] = useState('all');
+const MovieList = () => {
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [allMovies, setAllMovies] = useState([]);
+
+  const renderAll = () => {
+    axios.get('http://localhost:3000/movies').then((response) => {
+      setAllMovies(response.data);
+      setFilteredMovies(response.data);
+    });
+  }
+
+    useEffect(() => {
+      renderAll();
+    }, [MovieEntry])
 
   const handleWatchButtonClick = (e) => {
-    setWatchedState(e.target.value);
-    const watchedFilter = movies.filter(movie => {
+    let movies = allMovies.slice()
+    let watchedFilter = movies.filter(movie => {
       if (e.target.value === 'watched') {
-        return movie.watched === true;
+        return movie.watched === 1;
       } else if (e.target.value === 'to watch') {
-        return movie.watched === false;
+        return movie.watched === 0;
       } else {
-        return true;
+        return 1;
       }
-    })
-    setFilteredMovies(watchedFilter);
+    });
+    setFilteredMovies(watchedFilter)
   }
 
   return (
     <div className="movelist" key="movielist">
       <h2>Movie List</h2>
-    <div className="addMovie"><AddMovie placeholder="Add a new movie..." data={movies} setFilteredData={setFilteredMovies}/></div>
-    <div className="search"><Search placeholder="Search movies..." data={movies} setFilteredData={setFilteredMovies}/></div>
+    <div className="addMovie"><AddMovie placeholder="Add a new movie..." data={filteredMovies} setFilteredData={setFilteredMovies}/></div>
+    <div className="search"><Search placeholder="Search movies..." data={filteredMovies} setFilteredData={setFilteredMovies}/></div>
     <div className="listButtons">
       <span className="listButton"><Button variant="contained" color="secondary" value="all" onClick={handleWatchButtonClick}>All</Button></span>
       <span className="listButton"><Button variant="contained" color="secondary" value="watched" onClick={handleWatchButtonClick}>Watched</Button></span>
@@ -34,7 +46,7 @@ const MovieList = ({movies}) => {
     </div>
     <div className="movieDisplay">
       {filteredMovies.map((movie) => {
-        return <div className="movieentry" key={movie.title}><MovieEntry movie={movie} filteredMovies={filteredMovies} setFilteredMovies={setFilteredMovies}/></div>
+        return <div className="movieentry" key={movie.title}><MovieEntry movie={movie} renderAll={renderAll}/></div>
         })}
     </div>
    </div>
